@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Manusia</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1>Pendataan Manusia</h1>
+        <form class="form-utama">
+          <div class="form-control">
+            <label for="firstName">Nama depan</label>
+            <input type="text" id="firstName" placeholder="John" />
+          </div>
+          <div class="form-control">
+            <label for="lastName">Nama belakang</label>
+            <input type="text" id="lastName" placeholder="Doe" />
+          </div>
+          <div class="form-control">
+            <label for="gender">Gender</label>
+            <select id="gender">
+              <option value="" hidden>Please select gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-control">
+            <label for="address">Alamat</label>
+            <textarea
+              name="address"
+              id="address"
+              cols="30"
+              rows="10"
+              placeholder="Jl. Istana Merdeka No.45"
+            ></textarea>
+          </div>
+          <div class="form-footer">
+            <p id="user-feedback"></p>
+            <div class="form-buttons">
+              <button type="button" class="btn" id="reset-button">Reset</button>
+              <button type="submit" class="btn primary" id="save-button">
+                Save
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+    <div class="container">
+      <p>Data In localStorage</p>
+      <pre id="data-localstorage"></pre>
+    </div>
+  </body>
+  <script>
+    const STORAGE_KEY = "user-data";
+
+    const mainForm = document.querySelector(".form-utama");
+
+    const firstNameInput = document.querySelector("#firstName");
+    const lastNameInput = document.querySelector("#lastName");
+    const genderInput = document.querySelector("#gender");
+    const addressInput = document.querySelector("#address");
+
+    const showUserData = () => {
+      const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      const dataContainer = document.querySelector("#data-localstorage");
+
+      if (data) {
+        dataContainer.innerHTML = JSON.stringify(data, null, 2);
+      } else {
+        dataContainer.innerHTML = "No data in localStorage";
+      }
+    };
+
+    const handleSubmitForm = (event) => {
+      event.preventDefault();
+
+      const userData = {
+        firstName: firstNameInput.value,
+        lastName: lastNameInput.value,
+        gender: genderInput.value,
+        address: addressInput.value,
+      };
+
+      const userDataInLocalStorage = JSON.parse(
+        localStorage.getItem(STORAGE_KEY)
+      );
+
+      if (userDataInLocalStorage) {
+        const newData = [...userDataInLocalStorage, userData];
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(newData));
+      } else {
+        const newData = [userData];
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(newData));
+      }
+
+      showUserData();
+    };
+
+    mainForm.addEventListener("submit", handleSubmitForm);
+
+    const resetButton = document.querySelector("#reset-button");
+
+    const handleResetButton = (event) => {
+      event.preventDefault();
+
+      console.log("reset button clicked");
+
+      // clear all input
+      firstNameInput.value = "";
+      lastNameInput.value = "";
+      genderInput.value = "";
+      addressInput.value = "";
+
+      // clear localStorage
+      // localStorage.removeItem(KEY);
+
+      showUserData();
+    };
+
+    resetButton.addEventListener("click", handleResetButton);
+
+    showUserData();
+  </script>
+</html>
