@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe beatae
+      dolorum repellat accusamus nemo accusantium praesentium commodi animi
+      ipsam, vero iure quo voluptates magnam sit officiis autem ipsa esse
+      nesciunt!
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe beatae
+      dolorum repellat accusamus nemo accusantium praesentium commodi animi
+      ipsam, vero iure quo voluptates magnam sit officiis autem ipsa esse
+      nesciunt!
+    </p>
+    <div class="card">
+      <h3 class="card-title">Hey There</h3>
+      <div class="card-content">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe beatae
+          dolorum repellat accusamus nemo accusantium praesentium commodi animi
+          ipsam, vero iure quo voluptates magnam sit officiis autem ipsa esse
+          nesciunt!
+        </p>
+      </div>
+    </div>
+  </body>
+  <script>
+    const car = {
+      brand: "Honda",
+      model: "Civic",
+      year: 2022,
+    };
+
+    const carArray = [
+      {
+        brand: "Honda",
+        model: "Civic",
+        year: 2022,
+      },
+      {
+        brand: "Honda",
+        model: "Brio",
+        year: 2022,
+      },
+      {
+        brand: "Honda",
+        model: "HR-V",
+        year: 2022,
+      },
+    ];
+
+    // For Loop
+    console.log("For loop biasa");
+    for (let i = 0; i < carArray.length; i++) {
+      const carObject = carArray[i];
+      console.log(carObject.model);
+    }
+
+    // For-of Loop
+    console.log("For loop with of");
+    for (const carObject of carArray) {
+      console.log(carObject.model);
+    }
+
+    function normalFunction(param1) {
+      console.log(param1);
+      //...
+    }
+
+    const arrowFunction = (param1) => {
+      console.log(param1);
+      //...
+    };
+
+    console.log("For loop with forEach function dari Array");
+    carArray.forEach((carObject) => {
+      console.log(carObject.model);
+    });
+  </script>
+</html>

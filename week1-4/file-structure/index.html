@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/about.css" />
+  </head>
+  <body>
+    <a href="./about.html"><button class="button">go to about</button></a>
+    <h1 id="page-title">Homepage</h1>
+    <section class="flex-section">
+      <h2 class="section-heading">Heading</h2>
+      <p class="section-content">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas,
+        eius.
+      </p>
+      <button class="button" id="click-me">CLICK ME</button>
+    </section>
+    <section class="flex-section">
+      <form id="user-form">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" name="name" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="text" name="email" />
+        </div>
+        <input type="submit" value="Submit" />
+      </form>
+    </section>
+  </body>
+  <script>
+    const pageTitle = document.getElementById("page-title");
+    const queriedElement = document.querySelector(".section-heading");
+
+    // console.log("queriedElement", queriedElement);
+    // console.log("getResult", pageTitle);
+
+    pageTitle.innerHTML = "<i>Tutorial DOM<i/>";
+    // pageTitle.innerText = "<i>Tutorial DOM<i/>"; akan di baca sebagai text saja bukan HTML
+
+    queriedElement.style.color = "#a3aa";
+    queriedElement.style.textDecoration = "none";
+
+    const sectionContent = document.querySelector(".section-content");
+
+    const clickMeBtn = document.querySelector("#click-me");
+
+    function handleClick() {
+      sectionContent.classList.toggle("section-content");
+    }
+
+    clickMeBtn.addEventListener("click", handleClick);
+
+    const userForm = document.getElementById("user-form");
+
+    const handleFormSubmit = (event) => {
+      event.preventDefault();
+      console.log("Form Submitted");
+
+      const nameField = userForm.elements["name"];
+      const emailField = userForm.elements["email"];
+
+      const userInput = {
+        name: nameField.value,
+        email: emailField.value,
+      };
+
+      // nanti kita bisa masukin logic" yang di perlukan seperti submit ke api atau melakukan hal lain
+      // api.sendEmail(userInput)
+
+      alert(JSON.stringify(userInput, null, 4));
+    };
+
+    userForm.addEventListener("submit", handleFormSubmit);
+  </script>
+</html>

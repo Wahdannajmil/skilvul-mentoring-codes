@@ -1,0 +1,16 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+}
+
+#students-table,
+table,
+th,
+td {
+  border: 1px black solid;
+}

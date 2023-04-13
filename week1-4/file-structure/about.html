@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/about.css" />
+  </head>
+  <body>
+    <p id="number"></p>
+    <input type="number" id="userNumber" />
+    <button id="increment-btn">Increment</button>
+    <button id="stop-btn">Stop</button>
+    <p id="clock"></p>
+  </body>
+  <script>
+    const number = document.getElementById("number");
+    const button = document.getElementById("increment-btn");
+    const userNumber = document.getElementById("userNumber");
+    const stopButton = document.getElementById("stop-btn");
+
+    const clock = document.getElementById("clock");
+
+    let currentNumber = 0;
+
+    const updateNumber = () => {
+      number.innerText = currentNumber;
+      if (currentNumber % 2 === 0) {
+        number.style.color = "red";
+      } else {
+        number.style.color = "blue";
+      }
+    };
+
+    const handleClickIncrement = () => {
+      currentNumber += Number(userNumber.value);
+      updateNumber();
+    };
+
+    button.addEventListener("click", handleClickIncrement);
+
+    const intervalId = setInterval(handleClickIncrement, 1000);
+
+    stopButton.addEventListener("click", () => clearInterval(intervalId));
+
+    const updateClock = () => {
+      const date = new Date();
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+      const seconds = date.getSeconds();
+
+      clock.innerText = `${hours}:${minutes}:${seconds}`;
+    };
+
+    setInterval(updateClock, 1000);
+
+    // Kode inisialisasi awal
+    userNumber.value = 0;
+    updateNumber();
+    updateClock();
+  </script>
+</html>

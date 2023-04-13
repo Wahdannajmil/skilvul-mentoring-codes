@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Simple AJAX Example</h1>
+    <p id="username">No User</p>
+    <button id="download">Download User</button>
+    <button id="download2">Download User 2</button>
+  </body>
+  <script>
+    const userNameText = document.querySelector("#username");
+    const downloadBtn = document.querySelector("#download");
+    const downloadBtn2 = document.querySelector("#download2");
+
+    async function fetchUserAsync() {
+      try {
+        console.log("Downloading data...");
+        // Fetch data from API and wait for it to be downloaded
+        const response = await fetch("https://randomuser.me/api/");
+
+        console.log("Downloaded data");
+        // Parse the data as JSON and wait for it to be parsed
+        const data = await response.json();
+
+        const users = data.results;
+        const firstUser = users[0];
+        const username = `${firstUser.name.title} ${firstUser.name.first} ${firstUser.name.last}`;
+        userNameText.innerText = username;
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+
+    const asyncExampleFunction = async () => {
+      const response = await fetch("https://randomuser.me/api/");
+      const data = await response.json();
+      console.log(data);
+    };
+
+    function fetchUser() {
+      console.log("Downloading data...");
+      fetch("https://randomuser.me/api/")
+        .then((response) => {
+          console.log("Downloaded data");
+          return response.json();
+        })
+        .then((data) => {
+          const users = data.results;
+          const firstUser = users[0];
+          const username = `${firstUser.name.title} ${firstUser.name.first} ${firstUser.name.last}`;
+          userNameText.innerText = username;
+        })
+        .catch((error) => {
+          console.error(error.message);
+        });
+    }
+
+    downloadBtn.addEventListener("click", fetchUserAsync);
+    downloadBtn2.addEventListener("click", fetchUser);
+  </script>
+</html>

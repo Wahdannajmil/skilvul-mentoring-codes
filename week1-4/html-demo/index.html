@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <p>Current count: <span id="count"></span></p>
+      <input type="number" name="value" id="value" />
+    </div>
+    <div>
+      <button id="increment">increment</button>
+      <button id="reset">reset input</button>
+    </div>
+  </body>
+  <script>
+    let count = 0;
+
+    const valueInput = document.getElementById("value");
+
+    function refreshCount() {
+      let innerValue = "Alfred";
+      innerValue = "Budi";
+      document.getElementById("count").innerHTML = count;
+    }
+
+    function resetValueInput() {
+      valueInput.value = 0;
+    }
+
+    // initialization page
+    refreshCount();
+    resetValueInput();
+
+    // button action initialization
+    document.getElementById("increment").addEventListener("click", () => {
+      count += Number(valueInput.value);
+      // refresh count di dalam dom sesuai dengan count yang baru di update
+      refreshCount();
+    });
+
+    // reset button action
+    document.getElementById("reset").addEventListener("click", () => {
+      resetValueInput();
+    });
+
+    valueInput.addEventListener("focus", () => {
+      console.log("user focus dalam input box");
+    });
+
+    valueInput.addEventListener("blur", () => {
+      console.log("user meninggalkan input box");
+    });
+
+    const students = [];
+
+    console.log(students);
+    students.push("Alfred");
+    console.log(students);
+
+    // userName tidak akan bisa di ganti
+    // const userName = "";
+    // userName = "Alfred";
+
+    // user.name bisa di ganti walaupun
+    // dia di initialisasi dalam constant object
+    const user = {
+      name: "",
+    };
+
+    console.log(user);
+    user.name = "Alfred";
+    console.log(user);
+
+    function parent() {
+      function child() {
+        let value = "";
+      }
+      // tidak akan bisa id akses karena beda scope
+      //   console.log(value);
+    }
+
+    // difference between regular function definition with arrow function
+    function namaLengkap(namaDepan, namaBelakang) {
+      return namaDepan + " " + namaBelakang;
+    }
+
+    const namaLengkapArrow = (namaDepan, namaBelakang) => {
+      return `${namaDepan} ${namaBelakang}`;
+    };
+  </script>
+</html>
