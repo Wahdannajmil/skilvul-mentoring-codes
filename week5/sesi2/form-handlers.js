@@ -48,8 +48,6 @@ const resetButton = document.querySelector("#reset-button");
 const handleResetButton = (event) => {
   event.preventDefault();
 
-  console.log("reset button clicked");
-
   // clear all input
   firstNameInput.value = "";
   lastNameInput.value = "";
